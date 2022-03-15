@@ -22,7 +22,9 @@ ExecStart=/usr/bin/docker run \
 --mount=type=bind,source={{ home_assistant_data_path }}/docker/run,destination=/etc/services.d/home-assistant/run \
 --network={{ home_assistant_docker_network }} \
 --network-alias=home-assistant \
+{% if home_assistant_docker_publish %}
 --publish=127.0.0.1:8123:8123 \
+{% endif %}
 homeassistant/home-assistant:{{ home_assistant_docker_image_version }}
 ExecStop=/usr/bin/docker stop %N
 SyslogIdentifier=%N
