@@ -94,7 +94,7 @@
 
 - name: Wait for service to become available
   ansible.builtin.uri:
-    url: http://localhost:8123/api/
+    url: "{{ home_assistant_docker_api_url }}"
     status_code:
       - 401
   register: result
